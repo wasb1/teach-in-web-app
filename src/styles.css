@@ -1,3 +1,8 @@
 /* styles.css */
+footer {
+    font-size: 12px;
+}
 
-/* Add styles here to customize the appearance of your app */
+.logo {
+    max-height: 60px;
+}

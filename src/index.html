@@ -7,17 +7,34 @@
     <meta http-equiv="Content-Security-Policy"
         content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'">
     <link href="./styles.css" rel="stylesheet">
-    <title>Hello World!</title>
+    <title>Teach-in Web Interface</title>
 </head>
 
 <body>
-    <h1>Hello World!</h1>
-    We are using Node.js <span id="node-version"></span>,
+    <header>
+        <img src="../assets/isy-logo.png" class="logo">
+        <img src="../assets/UDE-logo.svg" class="logo">
+    </header>
+    <h1>Teach-in Web Interface</h1>
+    <div class="start-menu">
+        <h2>Start Menu</h2>
+        <button>Execute</button>
+        <button>Teach In</button>
+        <button>Exit</button>
+    </div>
+
+    <hr>
+    You are using Node.js <span id="node-version"></span>,
     Chromium <span id="chrome-version"></span>,
     and Electron <span id="electron-version"></span>.
-
+    <hr>
+    <footer>
+        <p>Faculty of Interactive Systems, University Duisburg-Essen</p>
+    </footer>
     <!-- You can also require other files to run in this process -->
+
     <script src="./renderer.js"></script>
 </body>
+
 
 </html>
