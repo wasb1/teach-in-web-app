@@ -15,13 +15,28 @@
         <img src="../assets/isy-logo.png" class="logo">
         <img src="../assets/UDE-logo.svg" class="logo">
     </header>
+
     <h1>Teach-in Web Interface</h1>
-    <div class="start-menu">
-        <h2>Start Menu</h2>
+
+    <!--Menus Draft-->
+    <div class="main-menu">
+        <h2>Main Menu</h2>
         <button>Execute</button>
         <button>Teach In</button>
         <button>Exit</button>
     </div>
+
+    <div class="scenarios-menu">
+        <h2>Scenarios Menu</h2>
+        <div id="scenarios-list"></div>
+        <button class="back-main">Back</button>
+    </div>
+
+    <div class="teach-in-menu">
+        <h2>Teach In Menu</h2>
+        <button class="back-main">Back</button>
+    </div>
+
 
     <hr>
     You are using Node.js <span id="node-version"></span>,
@@ -31,8 +46,8 @@
     <footer>
         <p>Faculty of Interactive Systems, University Duisburg-Essen</p>
     </footer>
-    <!-- You can also require other files to run in this process -->
 
+    <!-- You can also require other files to run in this process -->
     <script src="./renderer.js"></script>
 </body>
 
