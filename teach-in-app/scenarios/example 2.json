@@ -1,0 +1,7 @@
+{
+  "name": "example 2",
+  "poses": {},
+  "commands": [],
+  "pose_type": "sensor_msgs.msg.JointState",
+  "pose_topic": "/joint_states"
+}

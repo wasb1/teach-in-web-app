@@ -1,0 +1,36 @@
+{
+  "name": "example 1",
+  "poses": {
+    "ready": {
+      "joint_positions": [
+        -0.0002,
+        -0.7858,
+        0,
+        -2.3557,
+        0,
+        1.5727,
+        0.7854
+      ]
+    },
+    "random1": {
+      "joint_positions": [
+        -0.0005,
+        0,
+        0.0004,
+        -1.5708,
+        0.0001,
+        1.8674,
+        0.0003
+      ]
+    }
+  },
+  "commands": [
+    "goto ready",
+    "goto random1",
+    "goto ready",
+    "open",
+    "close"
+  ],
+  "pose_type": "sensor_msgs.msg.JointState",
+  "pose_topic": "/joint_states"
+}

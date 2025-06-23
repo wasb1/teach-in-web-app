@@ -2,15 +2,20 @@
   "name": "teach-in-web-app",
   "version": "1.0.0",
   "description": "Electron web interface that serves as a teach-in system for ROS-based robots",
-  "main": "index.js",
+  "main": "src/main.js",
   "scripts": {
-    "start": "electron src/main.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start-rvizweb": "http-server ./src/rvizweb-master -p 8080"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "electron": "^33.0.2"
+  },
+  "dependencies": {
+    "roslib": "^1.4.1",
+    "ws": "^8.18.0"
   }
 }

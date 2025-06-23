@@ -1,0 +1,48 @@
+{
+  "name": "Mounir_Scenario",
+  "poses": {
+    "random": {
+      "joint_positions": [
+        -1,
+        0,
+        -8,
+        -10,
+        6,
+        0,
+        0
+      ]
+    },
+    "ready3": {
+      "joint_positions": [
+        -0.0001,
+        -0.7857,
+        0,
+        -2.3558,
+        0,
+        1.5722,
+        0.7854
+      ]
+    },
+    "ready": {
+      "joint_positions": [
+        -0.0002,
+        -0.7857,
+        0,
+        -2.3558,
+        0,
+        1.5722,
+        0.7854
+      ]
+    }
+  },
+  "commands": [
+    "goto ready",
+    "open",
+    "goto random",
+    "goto ready",
+    "close",
+    "width 0"
+  ],
+  "pose_type": "sensor_msgs.msg.JointState",
+  "pose_topic": "/joint_states"
+}

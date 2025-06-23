@@ -1,0 +1,49 @@
+{
+  "name": "Scenario33",
+  "poses": {
+    "Ready": {
+      "joint_positions": [
+        -0.0002,
+        -0.7857,
+        0,
+        -2.3558,
+        0,
+        1.5722,
+        0.7854
+      ]
+    },
+    "Pos2": {
+      "joint_positions": [
+        0.0005,
+        0,
+        -0.0004,
+        -1.8617,
+        0.9929,
+        1.8678,
+        -0.001
+      ]
+    },
+    "tata": {
+      "joint_positions": [
+        -0.0002,
+        -0.7858,
+        0,
+        -2.3557,
+        0,
+        1.5727,
+        0.7854
+      ]
+    }
+  },
+  "commands": [
+    "goto Ready",
+    "open",
+    "goto Pos2",
+    "goto Ready",
+    "close",
+    "width 0",
+    "width 0.04"
+  ],
+  "pose_type": "sensor_msgs.msg.JointState",
+  "pose_topic": "/joint_states"
+}

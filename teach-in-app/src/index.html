@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'">
+    <link href="./styles.css" rel="stylesheet">
+    <title>Teach-in Web Interface</title>
+</head>
+
+<body>
+    <header>
+
+    </header>
+
+    <h1>Teach-in Web Interface</h1>
+    <div id="robot-selection" class="robot-selection-container">
+        <div class="robot-card" id="franka-card">
+            <img src="../assets/fittosize__600_0_64760566f716945f61919eecc84d7e17_panda_2.png" alt="Franka Emika Panda" class="robot-image">
+            <div class="robot-info">
+                <h3>Franka Emika Panda</h3>
+                <p><strong>Type:</strong> Industrial robot</p>
+                <p><strong>Location:</strong> Laboratory Human-Robot Collaboration</p>
+                <p><strong>Specialty:</strong> Loosen Screws</p>
+            </div>
+        </div>
+        <div class="robot-card" id="jaime-card">
+            <img src="../assets/jaimie_2.jpg" alt="Jaime" class="robot-image">
+            <div class="robot-info">
+                <h3>Jaime</h3>
+                <p><strong>Type:</strong> Social robot</p>
+                <p><strong>Location:</strong> Laboratory Human-Robot Collaboration</p>
+                <p><strong>Specialty:</strong> Deliveries</p>
+            </div>
+        </div>
+        <div class="robot-card" id="yuki-zuki-card">
+            <img src="../assets/yuzu.png" alt="Yuki & Zuki" class="robot-image">
+            <div class="robot-info">
+                <h3>Yuki & Zuki</h3>
+                <p><strong>Type:</strong> Social robot</p>
+                <p><strong>Location:</strong> Laboratory Human-Robot Collaboration</p>
+                <p><strong>Specialty:</strong> Dancing</p>
+            </div>
+        </div>
+        <div class="robot-card" id="reachy-card">
+            <img src="../assets/reachy_3.jpg" alt="Reachy" class="robot-image">
+            <div class="robot-info">
+                <h3>Reachy</h3>
+                <p><strong>Type:</strong> Social robot</p>
+                <p><strong>Location:</strong> Laboratory Human-Robot Collaboration</p>
+                <p><strong>Specialty:</strong> Board Games</p>
+            </div>
+        </div>
+
+    </div>
+    <div id="content-container" style="display: flex; gap: 20px;">
+    <div id='menu' class="menu hidden">
+        <div id="main-menu" class="hidden">
+            <h2>Main Menu</h2>
+    
+            <button id="realtime-control-btn">Realtime Control</button>
+            <button id="execute-btn">Execute Scenarios</button>
+            <button id="teach-in-btn">Teach In Scenarios</button>
+            <button id="back-to-robot-selection" class="back-btn">Back</button>
+        </div>
+        
+        <!--Realtime Control Submenu -->
+        <div id="realtime-menu" class="hidden">
+            <h2>Realtime Control</h2>
+            <hr>
+            <h3>Commands</h3>
+            <!-- Command Groups-->
+            <div class="command-group">
+                <input type="radio" name="realtime-command" id="realtime-goto" value="goto">
+                <label for="realtime-goto">Joints Control</label>
+                <div id="realtime-gotoInputContainer" style="display:none;"></div> <!--Container for Goto sliders -->
+            </div>
+        
+            <div class="command-group">
+                <input type="radio" name="realtime-command" id="realtime-width" value="width">
+                <label for="realtime-width">Gripper Width </label>
+                <div id="widthInputContainer" style="display:none;"></div> <!--Container for Width slider -->
+            </div>
+        
+            <div class="command-group">
+                <input type="radio" name="realtime-command" id="realtime-sleep" value="sleep">
+                <label for="realtime-sleep">Sleep</label>
+                <input type="text" id="realtime-sleep-input" placeholder="Enter time in seconds" style="display:none;">
+            </div>
+        
+            <div class="command-group">
+                <input type="radio" name="realtime-command" id="realtime-open" value="open">
+                <label for="realtime-open">Open Gripper</label>
+            </div>
+        
+            <div class="command-group">
+                <input type="radio" name="realtime-command" id="realtime-close" value="close">
+                <label for="realtime-close">Close Gripper</label>
+            </div>
+        
+            <div class="command-group">
+                <input type="radio" name="realtime-command" id="realtime-homing" value="homing">
+                <label for="realtime-homing">Homing</label>
+            </div>
+        
+            <div class="command-group">
+                <input type="radio" name="realtime-command" id="realtime-grasp" value="grasp">
+                <label for="realtime-grasp">Grasp</label>
+            </div>
+        
+            <div class="command-group">
+                <input type="radio" name="realtime-command" id="realtime-recover" value="recover">
+                <label for="realtime-recover">Recover</label>
+            </div>
+        
+            <hr>
+            <!--Execution and Back Buttons-->
+            <button id="realtime-execute-btn">Execute</button>
+            <button id="realtime-back-btn" class="back-btn">Back</button>
+        </div>
+        
+
+        
+        <div id="execute-menu" class="hidden">
+            <h2>Execute Scenario</h2>
+            <div id="execute-scenario-list">
+                <!--Buttons for scenarios will be dynamically added here -->
+            </div>
+            <button id="back-to-main" class="back-btn">Back</button>
+        </div>
+        <!--Submenu for displaying poses and commands -->
+        <div id="execute-submenu" class="hidden">
+            <h2 id="submenu-scenario-title">Scenario Details</h2>
+            <hr>
+            <div>
+                <h3>Poses</h3>
+                <ul id="pose-list-execute"></ul>
+            </div>
+
+            <div>
+                <h3>Commands</h3>
+                <ul id="command-list-execute"></ul>
+            </div>
+            <button id="execute-commands-btn">Execute Scenario</button>
+            <button class="back-btn" id="back-to-execute-menu">Back</button>
+        </div>
+
+        
+        <!--Teach-in Submenu-->
+        <div id="teach-in-menu" class="hidden">
+            <h2>Teach-in Menu</h2>
+            <button id="add-new-scenario-btn">Add New Scenario</button>
+            <button id="edit-existing-scenario-btn">Edit Existing Scenario</button>
+            <button id="back-to-main-teach" class="back-btn">Back</button>
+        </div>
+        <!--Add New Scenario Submenu -->
+        <div id="add-new-scenario-menu" class="hidden">
+            <h2>Add New Scenario</h2>
+            <input type="text" id="new-scenario-name" class="input name-input" placeholder="Enter scenario name">
+            <button id="create-scenario-btn">Create</button>
+            <button id="back-to-teach-in-menu" class="back-btn">Back</button>
+        </div>
+
+        <!--Edit Existing Scenario Submenu -->
+        <div id="edit-existing-scenario-menu" class="hidden">
+            <h2>Edit Existing Scenario</h2>
+            <div id="scenarios-list">
+                <!-- DUMMY SCENARIOS!!! -->
+                <button id="edit-scn-1">Scenario 1</button>
+                <button id="edit-scn-2">Scenario 2</button>
+                <button id="edit-scn-3">Scenario 3</button>
+            </div> <!-- SCENRAIO LIST TO BE LATER IMPLEMENTED!!-->
+            <button id="back-to-teach-in-menu-from-edit" class="back-btn">Back</button>
+        </div>
+
+
+        <!-- Teach In Scenario Submenu -->
+        <div id="teach-in-scenario-menu" class="hidden">
+            <h2 id="scenario-title"></h2>
+            <hr>
+            <h3>Commands</h3>
+            <div class="command-group">
+                <input type="radio" name="command" id="goto" value="goto"> <label for="goto">Goto Pose </label>
+<!--Dynamic content (dropdown or message) will be injected here -->
+<div id="gotoInputContainer"></div>            </div>
+            <!--FROM HERE ONLY DEMO-->
+            <div class="command-group">
+                <input type="radio" name="command" id="width" value="width"> <label for="width">Gripper Width</label>
+                <input type="text" id="widthInput" placeholder="Enter width (0.0 to 0.08)" style="display:none;">
+            </div>
+
+            <div class="command-group">
+                <input type="radio" name="command" id="sleep" value="sleep"> <label for="sleep">Sleep</label>
+                <input type="text" id="sleepInput" placeholder="Enter time in seconds" style="display:none;">
+            </div>
+
+            <div class="command-group">
+                <input type="radio" name="command" id="open" value="open"> <label for="open">Open Gripper</label>
+            </div>
+
+            <div class="command-group">
+                <input type="radio" name="command" id="close" value="close"> <label for="close">Close Gripper</label>
+            </div>
+
+            <div class="command-group">
+                <input type="radio" name="command" id="homing" value="homing"> <label for="homing">Homing</label>
+            </div>
+
+            <div class="command-group">
+                <input type="radio" name="command" id="grasp" value="grasp"> <label for="grasp">Grasp</label>
+            </div>
+
+            <div class="command-group">
+                <input type="radio" name="command" id="recover" value="recover"> <label for="recover">Recover</label>
+            </div>
+
+            <button id="addButton">Add Command</button>
+            <p id="status"></p>
+            <hr>
+            <div id="pose-section">
+                <h3>Poses</h3>
+
+                <!--Radio Buttons for Adding Poses -->
+                <div>
+                    <input type="radio" id="manualPose" name="poseOption" value="manual" checked>
+                    <label for="manualPose">Add Manual Pose</label>
+
+                    <input type="radio" id="currentPose" name="poseOption" value="current">
+                    <label for="currentPose">Add Current Live Pose</label>
+                </div>
+                <br>
+                <!--Input Fields for Pose Name and Joint Values (Only visible when Manual Pose Entry is selected) -->
+                <div id="pose-input-fields">
+                    <input type="text" id="pose-name" placeholder="Enter pose name" class="name-input" />
+                    <hr>
+                    <div id="joint-values">
+                        <input type="number" placeholder="Joint 1" id="joint1">
+                        <input type="number" placeholder="Joint 2" id="joint2">
+                        <input type="number" placeholder="Joint 3" id="joint3">
+                        <input type="number" placeholder="Joint 4" id="joint4">
+                        <input type="number" placeholder="Joint 5" id="joint5">
+                        <input type="number" placeholder="Joint 6" id="joint6">
+                        <input type="number" placeholder="Joint 7" id="joint7">
+                    </div>
+
+                    <button id="add-pose-btn">Add Pose</button>
+                </div>
+                <hr>
+                <h3>List Of Poses</h3>
+                <!-- Display Existing Poses -->
+                <div id="pose-list">
+                    <!-- Dynamically added list of poses-->
+                </div>
+            </div>
+            <hr>
+            <div id="command-list">
+                <!-- Commands will be dynamically added here-->
+            </div>
+            <hr>
+            <button id="back-to-scenario-selection" class="back-btn">Back</button>
+            <p id="status"></p>
+        </div>
+    </div>
+    <div id="robot-info-box" class="hidden">
+        <h3>ROBOT STATUS</h3>
+        <p><strong>Status:</strong> <span id="robot-status" style="color: red;">Disconnected</span></p>
+        <p><strong>Current State (7 Joints + 2 Gripper values):</strong> <span id="robot-position">N/A</span></p>
+        
+        <hr>
+        <!--Command Selection -->
+        <div class="robot-command-selection">
+            <h3>REALTIME CONTROL</h3>
+            <label>
+                <input type="radio" name="robot-info-command" value="goto">
+                Joints Control
+            </label>
+            <label>
+                <input type="radio" name="robot-info-command" value="width">
+                Gripper Width
+            </label>
+            <label>
+                <input type="radio" name="robot-info-command" value="start">
+                Ready Position
+            </label>
+        </div>
+        <hr>
+    
+        <!-- Input Container for Sliders -->
+        <div id="robot-info-box-inputs" class="robot-input-container">
+            <!-- Sliders will be dynamically added here -->
+        </div>
+    
+        <!-- Execute Button -->
+        <button id="robot-info-execute-btn" class="execute-button">Execute</button>
+        <button id="emergency-stop-btn" class="emergency-btn">Emergency Stop</button>
+    </div>
+    
+    
+</div>
+</div>
+
+     <!-- <hr>
+    You are using Node.js <span id="node-version"></span>,
+    Chromium <span id="chrome-version"></span>,
+    and Electron <span id="electron-version"></span>.
+    <hr> -->
+    <footer>
+        <hr>
+        <p>Faculty of Interactive Systems, University Duisburg-Essen</p>
+        <img src="../assets/isy-logo.png" class="logo">
+        <img src="../assets/UDE-logo.svg" class="logo">
+    </footer>
+
+    <!-- You can also require other files to run in this process -->
+    <script type="module" src="./renderer.js"></script>
+</body>
+
+
+</html>

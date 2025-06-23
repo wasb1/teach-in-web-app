@@ -1,0 +1,19 @@
+{
+  "name": "jhjhj",
+  "poses": {
+    "ready": {
+      "joint_positions": [
+        -0.0001,
+        -0.7857,
+        0,
+        -2.3558,
+        0,
+        1.5722,
+        0.7854
+      ]
+    }
+  },
+  "commands": [],
+  "pose_type": "sensor_msgs.msg.JointState",
+  "pose_topic": "/joint_states"
+}

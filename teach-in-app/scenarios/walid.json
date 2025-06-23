@@ -1,0 +1,35 @@
+{
+  "name": "walid",
+  "poses": {
+    "ghghgh": {
+      "joint_positions": [
+        0,
+        0,
+        0,
+        -1.5708,
+        0,
+        1.8675,
+        0
+      ]
+    },
+    "ghhghgh": {
+      "joint_positions": [
+        -0.0002,
+        -0.7857,
+        0,
+        -2.3558,
+        0,
+        1.5722,
+        0.7854
+      ]
+    }
+  },
+  "commands": [
+    "goto ghghgh",
+    "goto ghhghgh",
+    "open",
+    "close"
+  ],
+  "pose_type": "sensor_msgs.msg.JointState",
+  "pose_topic": "/joint_states"
+}
