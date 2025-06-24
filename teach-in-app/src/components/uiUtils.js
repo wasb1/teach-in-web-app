@@ -2,7 +2,7 @@ export function toggleVisibility(showElementIds = [], hideElementIds = []) {
     showElementIds.forEach(id => {
         const element = document.getElementById(id);
         element.classList.remove('hidden');
-        element.offsetHeight; //force reflow to ensure visibility update
+        element.offsetHeight; 
     });
     hideElementIds.forEach(id => document.getElementById(id).classList.add('hidden'));
 }
